@@ -19,7 +19,7 @@ function generateBoard(size = 6) {
   return shuffleArray(doubleNumbers);
 }
 
-function shuffleArray(arr) {
+function shuffleArray(arr: { number: number; show: boolean }[]) {
   const shuffledArr = [...arr];
   let currentIndex = shuffledArr.length;
   while (currentIndex != 0) {
@@ -65,11 +65,11 @@ export default function Board() {
         boardState[moveIndex].number ===
         boardState[prevIntermediateMoveIndex].number
       ) {
-        dispatch(addMove({ matched: true }));
-        dispatch(nextTurnWithDelay({ delay: 1000, nextPlayer: false }));
+        dispatch(addMove());
+        dispatch(nextTurnWithDelay({ delay: 1000, matched: true }));
       } else {
-        dispatch(addMove({ matched: false }));
-        dispatch(nextTurnWithDelay({ delay: 1000, nextPlayer: true }));
+        dispatch(addMove());
+        dispatch(nextTurnWithDelay({ delay: 1000, matched: false }));
       }
     }
   }

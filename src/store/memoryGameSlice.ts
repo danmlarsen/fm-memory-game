@@ -17,8 +17,8 @@ const initialState = {
   gameState: GameState.Playing,
   boardState: [] as CellState[],
   currentPlayer: 0,
-  players: [0, 0, 0, 0] as number[],
-  solo: true,
+  players: [0, 0] as number[],
+  solo: false,
   startTime: 0,
   numMoves: 0,
   intermediateMoves: [] as number[],
@@ -35,8 +35,14 @@ const memoryGameSlice = createSlice({
       const moveIndex = action.payload;
       state.intermediateMoves.push(moveIndex);
     },
-    addMove(state, action) {
+    addMove(state) {
       state.gameState = GameState.MoveEnd;
+      state.numMoves++;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(nextTurnWithDelay.fulfilled, (state, action) => {
+      console.log(action.payload);
 
       const currentPlayerIndex = state.currentPlayer;
 
@@ -52,24 +58,13 @@ const memoryGameSlice = createSlice({
             : state.currentPlayer + 1;
       }
 
-      state.numMoves++;
-    },
-    nextTurn(state) {
-      state.intermediateMoves = [];
-      state.gameState = GameState.Playing;
-    },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(nextTurnWithDelay.fulfilled, (state, action) => {
-      console.log(action.payload);
-
       state.intermediateMoves = [];
       state.gameState = GameState.Playing;
     });
   },
 });
 
-export const { startGame, addIntermediateMove, addMove, nextTurn } =
+export const { startGame, addIntermediateMove, addMove } =
   memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;
@@ -79,8 +74,8 @@ export const getNumPlayers = (state: RootState) =>
 
 export const nextTurnWithDelay = createAsyncThunk(
   "memoryGame/nextTurnWithDelay",
-  async (payload: { delay: number; nextPlayer: boolean }) => {
+  async (payload: { delay: number; matched: boolean }) => {
     await new Promise((resolve) => setTimeout(resolve, payload.delay));
-    return payload.nextPlayer;
+    return payload;
   },
 );
