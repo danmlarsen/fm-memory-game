@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import BoardCell from "./BoardCell";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import {
+  addIntermediateMove,
+  addMove,
+  GameState,
+  nextTurnWithDelay,
+  startGame,
+} from "../store/memoryGameSlice";
 
-function generateBoard() {
-  const uniqueNumbers = Array.from({ length: 18 }, (_, i) => ({
+function generateBoard(size = 6) {
+  const uniqueNumbers = Array.from({ length: size ** 2 / 2 }, (_, i) => ({
     number: i,
     show: false,
   }));
@@ -27,28 +35,58 @@ function shuffleArray(arr) {
 }
 
 export default function Board() {
-  const [boardState, setBoardState] = useState(() => generateBoard());
+  const { gameState, boardState, intermediateMoves } = useAppSelector(
+    (state) => state.memoryGame,
+  );
 
-  function handleClick(index) {
-    setBoardState((prev) =>
-      prev.map((prevCell, prevIndex) => {
-        if (prevIndex === index)
-          return {
-            ...prevCell,
-            show: true,
-          };
-        return prevCell;
+  const boardSize = 4;
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const newBoard = generateBoard(boardSize);
+
+    dispatch(
+      startGame({
+        boardState: newBoard,
       }),
     );
+  }, [dispatch]);
+
+  function handleClick(moveIndex: number) {
+    if (gameState !== GameState.Playing) return;
+
+    dispatch(addIntermediateMove(moveIndex));
+
+    if (intermediateMoves.length === 1) {
+      const [prevIntermediateMoveIndex] = intermediateMoves;
+
+      if (
+        boardState[moveIndex].number ===
+        boardState[prevIntermediateMoveIndex].number
+      ) {
+        dispatch(addMove({ matched: true }));
+        dispatch(nextTurnWithDelay({ delay: 1000, nextPlayer: false }));
+      } else {
+        dispatch(addMove({ matched: false }));
+        dispatch(nextTurnWithDelay({ delay: 1000, nextPlayer: true }));
+      }
+    }
   }
 
   return (
-    <div className="mx-auto grid size-[572px] grid-cols-[repeat(6,1fr)] grid-rows-[repeat(6,1fr)] gap-4">
+    <div
+      className={`mx-auto grid size-[572px] grid-cols-[repeat(${boardSize},1fr)] grid-rows-[repeat(${boardSize},1fr)] gap-4`}
+    >
       {boardState.map((el, index) => (
         <BoardCell
           key={index}
-          show={el.show}
-          disabled={el.show}
+          show={el.show || intermediateMoves.includes(index)}
+          disabled={
+            gameState !== GameState.Playing ||
+            el.show ||
+            intermediateMoves.includes(index)
+          }
           onClick={() => handleClick(index)}
         >
           {el.number}
