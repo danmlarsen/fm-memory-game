@@ -1,11 +1,24 @@
+import { useEffect, useState } from "react";
 import { useAppSelector } from "../store/hooks";
 
 export default function SoloStats() {
-  const { numMoves } = useAppSelector((state) => state.memoryGame);
+  const { numMoves, startTime } = useAppSelector((state) => state.memoryGame);
+
+  const [elapsedTime, setElapsedTime] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = performance.now();
+      const elapsed = Math.floor((now - startTime) / 1000);
+      setElapsedTime(elapsed);
+
+      return () => clearInterval(interval);
+    }, 1000);
+  }, [startTime]);
 
   return (
     <div className="mx-auto grid w-[540px] grid-cols-2 gap-8">
-      <StatsBox name="Time" data="1:53" />
+      <StatsBox name="Time" data={elapsedTime} />
       <StatsBox name="Moves" data={numMoves} />
     </div>
   );

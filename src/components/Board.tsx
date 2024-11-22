@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import BoardCell from "./BoardCell";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
@@ -6,52 +5,12 @@ import {
   addMove,
   GameState,
   nextTurnWithDelay,
-  startGame,
 } from "../store/memoryGameSlice";
 
-function generateBoard(size = 6) {
-  const uniqueNumbers = Array.from({ length: size ** 2 / 2 }, (_, i) => ({
-    number: i,
-    show: false,
-  }));
-  const doubleNumbers = uniqueNumbers.concat(uniqueNumbers);
-
-  return shuffleArray(doubleNumbers);
-}
-
-function shuffleArray(arr: { number: number; show: boolean }[]) {
-  const shuffledArr = [...arr];
-  let currentIndex = shuffledArr.length;
-  while (currentIndex != 0) {
-    const randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    [shuffledArr[currentIndex], shuffledArr[randomIndex]] = [
-      shuffledArr[randomIndex],
-      shuffledArr[currentIndex],
-    ];
-  }
-  return shuffledArr;
-}
-
 export default function Board() {
-  const { gameState, boardState, intermediateMoves } = useAppSelector(
-    (state) => state.memoryGame,
-  );
-
-  const boardSize = 4;
-
+  const { gameState, boardState, intermediateMoves, lastMatch, gridSize } =
+    useAppSelector((state) => state.memoryGame);
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const newBoard = generateBoard(boardSize);
-
-    dispatch(
-      startGame({
-        boardState: newBoard,
-      }),
-    );
-  }, [dispatch]);
 
   function handleClick(moveIndex: number) {
     if (gameState !== GameState.Playing) return;
@@ -65,10 +24,10 @@ export default function Board() {
         boardState[moveIndex].number ===
         boardState[prevIntermediateMoveIndex].number
       ) {
-        dispatch(addMove());
+        dispatch(addMove({ matched: true }));
         dispatch(nextTurnWithDelay({ delay: 1000, matched: true }));
       } else {
-        dispatch(addMove());
+        dispatch(addMove({ matched: false }));
         dispatch(nextTurnWithDelay({ delay: 1000, matched: false }));
       }
     }
@@ -76,20 +35,23 @@ export default function Board() {
 
   return (
     <div
-      className={`mx-auto grid size-[572px] grid-cols-[repeat(${boardSize},1fr)] grid-rows-[repeat(${boardSize},1fr)] gap-4`}
+      style={{
+        gridTemplateRows: `repeat(${gridSize}, 1fr)`,
+        gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
+      }}
+      className={`mx-auto grid size-[572px] gap-4`}
     >
-      {boardState.map((el, index) => (
+      {boardState.map((boardCell, index) => (
         <BoardCell
           key={index}
-          show={el.show || intermediateMoves.includes(index)}
+          show={boardCell.show || intermediateMoves.includes(index)}
+          lastMatch={lastMatch.includes(index)}
           disabled={
-            gameState !== GameState.Playing ||
-            el.show ||
-            intermediateMoves.includes(index)
+            gameState !== GameState.Playing || intermediateMoves.includes(index)
           }
           onClick={() => handleClick(index)}
         >
-          {el.number}
+          {boardCell.number}
         </BoardCell>
       ))}
     </div>

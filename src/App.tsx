@@ -1,13 +1,24 @@
 import Board from "./components/Board";
 import BoardFooter from "./components/BoardFooter";
 import BoardHeader from "./components/BoardHeader";
+import StartGameMenu from "./components/StartGameMenu";
+import { useAppSelector } from "./store/hooks";
+import { GameState } from "./store/memoryGameSlice";
 
 function App() {
+  const { gameState } = useAppSelector((state) => state.memoryGame);
+
   return (
     <div className="container mx-auto grid min-h-screen items-center">
-      <BoardHeader />
-      <Board />
-      <BoardFooter />
+      {gameState === GameState.NewGame ? (
+        <StartGameMenu />
+      ) : (
+        <>
+          <BoardHeader />
+          <Board />
+          <BoardFooter />
+        </>
+      )}
     </div>
   );
 }

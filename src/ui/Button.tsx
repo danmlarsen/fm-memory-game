@@ -1,11 +1,13 @@
 type AppProps = {
   children: string;
+  onClick: () => void;
   type?: "primary" | "secondary";
   size?: "normal" | "big";
 };
 
 export default function Button({
   children,
+  onClick,
   type = "primary",
   size = "normal",
 }: AppProps) {
@@ -18,6 +20,8 @@ export default function Button({
     classes += "bg-secondary-200 text-secondary-900 hover:bg-secondary-200 ";
 
   return (
-    <button className={`max-w-lg px-7 py-3 ${classes}`}>{children}</button>
+    <button className={`max-w-lg px-7 py-3 ${classes}`} onClick={onClick}>
+      {children}
+    </button>
   );
 }
