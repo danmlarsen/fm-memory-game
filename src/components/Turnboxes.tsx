@@ -8,11 +8,11 @@ export default function TurnBoxes() {
 
   return (
     <div className="grid grid-flow-col gap-4">
-      {players.map((playerScore, index) => (
+      {players.map((player, index) => (
         <TurnBox
           key={index}
-          playerName={`Player ${index + 1}`}
-          moves={playerScore}
+          playerName={`Player ${player.playerNum}`}
+          moves={player.pairs}
           isActive={currentPlayer === index}
         />
       ))}

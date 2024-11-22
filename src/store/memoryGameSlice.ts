@@ -8,9 +8,14 @@ export enum GameState {
   GameOver,
 }
 
-type CellState = {
+export type CellState = {
   number: number;
   show: boolean;
+};
+
+export type Player = {
+  playerNum: number;
+  pairs: number;
 };
 
 const initialState = {
@@ -18,7 +23,7 @@ const initialState = {
   gridSize: 4,
   boardState: [] as CellState[],
   currentPlayer: 0,
-  players: [0, 0] as number[],
+  players: [] as Player[],
   startTime: 0,
   numMoves: 0,
   lastMatch: [] as number[],
@@ -47,7 +52,7 @@ const memoryGameSlice = createSlice({
         ...initialState,
         boardState: action.payload.boardState,
         gridSize: state.gridSize,
-        players: state.players.map(() => 0),
+        players: generatePlayers(state.players.length),
         startTime: performance.now(),
         gameState: GameState.Playing,
       };
@@ -73,7 +78,7 @@ const memoryGameSlice = createSlice({
       const currentPlayerIndex = state.currentPlayer;
 
       if (action.payload.matched) {
-        state.players[currentPlayerIndex]++;
+        state.players[currentPlayerIndex].pairs++;
         state.intermediateMoves.forEach((index) => {
           state.boardState[index].show = true;
         });
@@ -94,6 +99,12 @@ export const { newGame, startGame, restartGame, addIntermediateMove, addMove } =
   memoryGameSlice.actions;
 
 export default memoryGameSlice.reducer;
+
+export const generatePlayers = (numPlayers: number) =>
+  Array.from({ length: numPlayers }, (_, index) => ({
+    playerNum: index + 1,
+    pairs: 0,
+  }));
 
 export const selectNumPlayers = (state: RootState) =>
   state.memoryGame.players.length;

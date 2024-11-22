@@ -22,3 +22,15 @@ export function shuffleArray(arr: { number: number; show: boolean }[]) {
   }
   return shuffledArr;
 }
+
+export function getGreatestNumIndexes(arr: number[]) {
+  const largest = Math.max(...arr);
+
+  const indexes = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === largest) {
+      indexes.push(i);
+    }
+  }
+  return indexes;
+}

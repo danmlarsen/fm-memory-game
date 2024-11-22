@@ -3,7 +3,7 @@ import Button from "../ui/Button";
 import Logo from "../ui/Logo";
 import MenuButton from "../ui/MenuButton";
 import { useAppDispatch } from "../store/hooks";
-import { startGame } from "../store/memoryGameSlice";
+import { generatePlayers, startGame } from "../store/memoryGameSlice";
 import { generateBoard } from "../utils/utils";
 
 export default function StartGameMenu() {
@@ -20,7 +20,7 @@ export default function StartGameMenu() {
       startGame({
         boardState: newBoard,
         gridSize,
-        players: Array.from({ length: numPlayers }, () => 0),
+        players: generatePlayers(numPlayers),
       }),
     );
   }

@@ -1,6 +1,7 @@
 import Board from "./components/Board";
 import BoardFooter from "./components/BoardFooter";
 import BoardHeader from "./components/BoardHeader";
+import GameOverModal from "./components/GameOverModal";
 import StartGameMenu from "./components/StartGameMenu";
 import { useAppSelector } from "./store/hooks";
 import { GameState } from "./store/memoryGameSlice";
@@ -14,6 +15,7 @@ function App() {
         <StartGameMenu />
       ) : (
         <>
+          <GameOverModal />
           <BoardHeader />
           <Board />
           <BoardFooter />
