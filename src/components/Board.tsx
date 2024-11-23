@@ -6,10 +6,17 @@ import {
   GameState,
   nextTurnWithDelay,
 } from "../store/memoryGameSlice";
+import GameIcon from "./GameIcon";
 
 export default function Board() {
-  const { gameState, boardState, intermediateMoves, lastMatch, gridSize } =
-    useAppSelector((state) => state.memoryGame);
+  const {
+    gameState,
+    boardState,
+    icons,
+    intermediateMoves,
+    lastMatch,
+    gridSize,
+  } = useAppSelector((state) => state.memoryGame);
   const dispatch = useAppDispatch();
 
   function handleClick(moveIndex: number) {
@@ -51,7 +58,14 @@ export default function Board() {
           }
           onClick={() => handleClick(index)}
         >
-          {boardCell.number}
+          {icons ? (
+            <GameIcon
+              className={`${gridSize < 6 ? "size-10 md:size-14" : "size-8 md:size-10"}`}
+              iconNum={boardCell.number}
+            />
+          ) : (
+            boardCell.number
+          )}
         </BoardCell>
       ))}
     </div>

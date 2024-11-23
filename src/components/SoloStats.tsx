@@ -26,7 +26,7 @@ export default function SoloStats() {
   }, [startTime, stopTime]);
 
   return (
-    <div className="mx-auto grid w-full grid-cols-2 gap-8">
+    <div className="mx-auto grid w-full grid-cols-[repeat(2,minmax(min-content,255px))] justify-center gap-8">
       <StatsBox name="Time" data={formatTime(elapsedTime)} />
       <StatsBox name="Moves" data={numMoves} />
     </div>

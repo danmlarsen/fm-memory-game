@@ -1,21 +1,22 @@
 type AppProps = {
-  playerName: string;
+  playerNum: number;
   moves: number;
   isActive?: boolean;
 };
 
 export default function TurnBox({
-  playerName,
+  playerNum,
   moves,
   isActive = false,
 }: AppProps) {
   return (
     <div className="space-y-4">
       <div
-        className={`relative flex flex-col items-center justify-between rounded-sm px-2 py-[10px] ${isActive ? "bg-primary-500" : "bg-secondary-100"}`}
+        className={`relative flex flex-col items-center rounded-sm p-2 py-[10px] md:items-start md:p-4 lg:flex-row lg:justify-between ${isActive ? "bg-primary-500" : "bg-secondary-100"}`}
       >
         <div className={`${isActive ? "text-white" : "text-secondary-400"}`}>
-          {playerName}
+          <span className="md:hidden">P{playerNum}</span>
+          <span className="hidden md:inline">Player {playerNum}</span>
         </div>
         <div className={`${isActive ? "text-white" : "text-secondary-900"}`}>
           {moves}

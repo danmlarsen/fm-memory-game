@@ -21,7 +21,7 @@ export default function Button({
     classes += "bg-secondary-100 text-secondary-700 hover:bg-secondary-200 ";
 
   return (
-    <button className={`max-w-lg px-7 py-3 ${classes}`} onClick={onClick}>
+    <button className={`px-7 py-3 md:text-3xl ${classes}`} onClick={onClick}>
       {children}
     </button>
   );

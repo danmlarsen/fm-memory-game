@@ -21,6 +21,7 @@ export type Player = {
 const initialState = {
   gameState: GameState.NewGame,
   gridSize: 4,
+  icons: false,
   boardState: [] as CellState[],
   currentPlayer: 0,
   players: [] as Player[],
@@ -43,6 +44,7 @@ const memoryGameSlice = createSlice({
         ...initialState,
         boardState: action.payload.boardState,
         gridSize: action.payload.gridSize,
+        icons: action.payload.icons,
         players: action.payload.players,
         startTime: performance.now(),
         gameState: GameState.Playing,

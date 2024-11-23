@@ -7,11 +7,16 @@ export default function TurnBoxes() {
   );
 
   return (
-    <div className="grid grid-flow-col gap-4">
+    <div
+      className="grid justify-center gap-4"
+      style={{
+        gridTemplateColumns: `repeat(${players.length},minmax(min-content,255px)`,
+      }}
+    >
       {players.map((player, index) => (
         <TurnBox
           key={index}
-          playerName={`P${player.playerNum}`}
+          playerNum={player.playerNum}
           moves={player.pairs}
           isActive={currentPlayer === index}
         />

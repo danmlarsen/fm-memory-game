@@ -14,7 +14,7 @@ function App() {
       {gameState === GameState.NewGame ? (
         <StartGameMenu />
       ) : (
-        <div className="grid min-h-screen grid-rows-[auto_1fr_auto] p-6">
+        <div className="mx-auto grid min-h-screen max-w-[1110px] grid-rows-[auto_1fr_auto]">
           {gameState === GameState.GameOver && <GameOverModal />}
           <BoardHeader />
           <main className="grid place-items-center py-4">

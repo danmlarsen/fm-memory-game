@@ -20,6 +20,7 @@ export default function StartGameMenu() {
       startGame({
         boardState: newBoard,
         gridSize,
+        icons: selectedTheme === "icons" ? true : false,
         players: generatePlayers(numPlayers),
       }),
     );
@@ -27,11 +28,11 @@ export default function StartGameMenu() {
 
   return (
     <div className="grid min-h-screen place-items-center bg-secondary-900 px-6">
-      <div className="container max-w-screen-sm space-y-8">
+      <div className="container max-w-[654px] space-y-8">
         <header className="grid place-items-center">
           <Logo className="fill-gray-50" />
         </header>
-        <main className="space-y-8 rounded-[20px] bg-gray-50 p-6 text-secondary-500">
+        <main className="space-y-8 rounded-[20px] bg-gray-50 p-6 text-secondary-500 md:p-14">
           <MenuItem name="Select Theme">
             <MenuButton
               isActive={selectedTheme === "numbers"}
