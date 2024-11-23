@@ -26,12 +26,12 @@ export default function StartGameMenu() {
   }
 
   return (
-    <div className="grid min-h-screen place-items-center bg-secondary-900">
-      <div className="container max-w-screen-sm">
-        <header>
-          <Logo />
+    <div className="grid min-h-screen place-items-center bg-secondary-900 px-6">
+      <div className="container max-w-screen-sm space-y-8">
+        <header className="grid place-items-center">
+          <Logo className="fill-gray-50" />
         </header>
-        <main className="space-y-8 rounded-[20px] bg-gray-50 p-14 text-secondary-700">
+        <main className="space-y-8 rounded-[20px] bg-gray-50 p-6 text-secondary-500">
           <MenuItem name="Select Theme">
             <MenuButton
               isActive={selectedTheme === "numbers"}
@@ -108,9 +108,9 @@ function MenuItem({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="space-y-3">
       <h3>{name}</h3>
-      <div className="grid grid-flow-col gap-8 text-white">{children}</div>
+      <div className="grid grid-flow-col gap-3 text-white">{children}</div>
     </div>
   );
 }

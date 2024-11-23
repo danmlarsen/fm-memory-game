@@ -10,16 +10,18 @@ function App() {
   const { gameState } = useAppSelector((state) => state.memoryGame);
 
   return (
-    <div className="container mx-auto grid min-h-screen items-center">
+    <div>
       {gameState === GameState.NewGame ? (
         <StartGameMenu />
       ) : (
-        <>
-          <GameOverModal />
+        <div className="grid min-h-screen grid-rows-[auto_1fr_auto] p-6">
+          {gameState === GameState.GameOver && <GameOverModal />}
           <BoardHeader />
-          <Board />
+          <main className="grid place-items-center py-4">
+            <Board />
+          </main>
           <BoardFooter />
-        </>
+        </div>
       )}
     </div>
   );

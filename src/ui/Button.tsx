@@ -15,9 +15,10 @@ export default function Button({
   if (size === "normal") classes += "rounded-md ";
   if (size === "big") classes += "rounded-xl w-full ";
 
-  if (type === "primary") classes += "bg-primary-500 hover:bg-primary-200 ";
+  if (type === "primary")
+    classes += "text-gray-50 bg-primary-500 hover:bg-primary-200 ";
   if (type === "secondary")
-    classes += "bg-secondary-200 text-secondary-900 hover:bg-secondary-200 ";
+    classes += "bg-secondary-100 text-secondary-700 hover:bg-secondary-200 ";
 
   return (
     <button className={`max-w-lg px-7 py-3 ${classes}`} onClick={onClick}>

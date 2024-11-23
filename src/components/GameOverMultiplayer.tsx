@@ -10,8 +10,8 @@ export default function GameOverMultiplayer() {
 
   return (
     <>
-      <div className="text-center">
-        <h2>
+      <div className="space-y-2 text-center">
+        <h2 className="text-secondary-900">
           {winners.length > 1
             ? "It's a tie!"
             : `Player ${winners[0].playerNum} Wins!`}
@@ -22,14 +22,20 @@ export default function GameOverMultiplayer() {
         {sortedPlayers.map((player) => (
           <li
             key={player.playerNum}
-            className={`bg-secondary-100 flex items-center justify-between rounded-sm p-4 ${player.pairs === winnerAmount ? "bg-secondary-900" : ""}`}
+            className={`bg-secondary-100 flex items-center justify-between rounded-sm p-4 ${player.pairs === winnerAmount ? "bg-secondary-900 text-gray-50" : ""}`}
           >
-            <span>Player {player.playerNum}</span>
-            <span>{player.pairs} Pairs</span>
+            <div>
+              <span>Player {player.playerNum}</span>{" "}
+              {player.pairs === winnerAmount && <span>(Winner!)</span>}
+            </div>
+            <div
+              className={`text-xl ${player.pairs === winnerAmount ? "text-gray-50" : "text-secondary-900"}`}
+            >
+              {player.pairs} Pairs
+            </div>
           </li>
         ))}
       </ul>
-      <div></div>
     </>
   );
 }

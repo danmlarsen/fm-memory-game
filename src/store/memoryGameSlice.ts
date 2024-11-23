@@ -25,6 +25,7 @@ const initialState = {
   currentPlayer: 0,
   players: [] as Player[],
   startTime: 0,
+  stopTime: 0,
   numMoves: 0,
   lastMatch: [] as number[],
   intermediateMoves: [] as number[],
@@ -90,7 +91,13 @@ const memoryGameSlice = createSlice({
       }
 
       state.intermediateMoves = [];
-      state.gameState = GameState.Playing;
+
+      if (state.boardState.filter((cell) => cell.show === false).length === 0) {
+        state.stopTime = performance.now();
+        state.gameState = GameState.GameOver;
+      } else {
+        state.gameState = GameState.Playing;
+      }
     });
   },
 });
