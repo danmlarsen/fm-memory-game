@@ -12,7 +12,7 @@ export default function TurnBox({
   return (
     <div className="space-y-4">
       <div
-        className={`relative flex flex-col items-center rounded-sm p-2 py-[10px] md:items-start md:p-4 lg:flex-row lg:justify-between ${isActive ? "bg-primary-500" : "bg-secondary-100"}`}
+        className={`relative flex flex-col items-center rounded-sm p-2 py-[10px] transition duration-300 md:items-start md:p-4 lg:flex-row lg:justify-between ${isActive ? "bg-primary-500" : "bg-secondary-100"}`}
       >
         <div className={`${isActive ? "text-white" : "text-secondary-400"}`}>
           <span className="md:hidden">P{playerNum}</span>

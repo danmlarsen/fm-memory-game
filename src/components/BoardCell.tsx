@@ -15,7 +15,7 @@ export default function BoardCell({
 }: AppProps) {
   return (
     <button
-      className={`relative rounded-full text-2xl`}
+      className={`relative rounded-full`}
       style={{
         paddingBottom: "100%",
       }}

@@ -46,7 +46,7 @@ export default function Board() {
         gridTemplateRows: `repeat(${gridSize}, 1fr)`,
         gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
       }}
-      className={`mx-auto grid w-full ${gridSize < 6 ? "max-w-[532px] gap-3" : "max-w-[572px] gap-2"}`}
+      className={`mx-auto grid w-full leading-normal ${gridSize < 6 ? "max-w-[532px] gap-3 text-[24px] md:text-[56px]" : "max-w-[572px] gap-2 text-[40px] md:text-[44px]"}`}
     >
       {boardState.map((boardCell, index) => (
         <BoardCell
