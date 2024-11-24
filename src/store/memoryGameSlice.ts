@@ -78,6 +78,8 @@ const memoryGameSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(nextTurnWithDelay.fulfilled, (state, action) => {
+      if (state.gameState !== GameState.MoveEnd) return state;
+
       const currentPlayerIndex = state.currentPlayer;
 
       if (action.payload.matched) {
