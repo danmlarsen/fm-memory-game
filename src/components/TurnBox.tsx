@@ -25,7 +25,7 @@ export default function TurnBox({
           <div className="absolute left-1/2 top-0 -z-10 size-5 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-primary-500"></div>
         )}
       </div>
-      <div className="hidden text-center sm:block">
+      <div className="hidden text-center lg:block">
         {isActive && (
           <span className="uppercase text-secondary-900">Current turn</span>
         )}

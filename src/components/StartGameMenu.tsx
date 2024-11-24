@@ -30,7 +30,9 @@ export default function StartGameMenu() {
     <div className="grid min-h-screen place-items-center bg-secondary-900 px-6">
       <div className="container max-w-[654px] space-y-8">
         <header className="grid place-items-center">
-          <Logo className="fill-gray-50" />
+          <div>
+            <Logo className="h-10 w-[122px] fill-gray-50" />
+          </div>
         </header>
         <main className="space-y-8 rounded-[20px] bg-gray-50 p-6 text-secondary-500 md:p-14">
           <MenuItem name="Select Theme">

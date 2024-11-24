@@ -15,6 +15,7 @@ import { GiBiceps } from "react-icons/gi";
 import { GiBubblingFlask } from "react-icons/gi";
 import { GiChiliPepper } from "react-icons/gi";
 import { GiWyvern } from "react-icons/gi";
+import { GiRadioactive } from "react-icons/gi";
 
 export default function GameIcon({
   className,
@@ -43,7 +44,7 @@ export default function GameIcon({
     <GiBubblingFlask className={classes} />,
     <GiChiliPepper className={classes} />,
     <GiWyvern className={classes} />,
-    <GiWyvern className={classes} />,
+    <GiRadioactive className={classes} />,
   ];
 
   return iconArr[iconNum];

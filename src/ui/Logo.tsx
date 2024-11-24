@@ -1,7 +1,9 @@
-export default function Logo({ className = "fill-secondary-900" }) {
+export default function Logo({
+  className = "fill-secondary-900 h-[30px] w-[92px]",
+}) {
   return (
     <svg
-      className={`h-[30px] w-[92px] ${className}`}
+      className={`${className}`}
       viewBox="0 0 150 28"
       xmlns="http://www.w3.org/2000/svg"
     >

@@ -1,4 +1,5 @@
 import { useAppSelector } from "../store/hooks";
+import { formatTime } from "../utils/utils";
 
 export default function GameOverSolo() {
   const { numMoves, startTime, stopTime } = useAppSelector(
@@ -16,7 +17,9 @@ export default function GameOverSolo() {
       <ul className="space-y-2">
         <li className="bg-secondary-100 flex items-center justify-between rounded-sm p-4">
           <span>Time elapsed</span>
-          <span className="text-xl text-secondary-900">{elapsed}</span>
+          <span className="text-xl text-secondary-900">
+            {formatTime(elapsed)}
+          </span>
         </li>
         <li className="bg-secondary-100 flex items-center justify-between rounded-sm p-4">
           <span>Moves Taken</span>

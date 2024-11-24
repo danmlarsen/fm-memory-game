@@ -13,7 +13,7 @@ export default function BoardHeaderGameMenu({
 }: AppProps) {
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-black/50 p-6">
-      <div className="w-full max-w-2xl space-y-6 rounded-sm bg-gray-50 p-6 text-sm text-secondary-400">
+      <div className="w-full max-w-sm space-y-4 rounded-sm bg-gray-50 p-6 text-sm text-secondary-400">
         <Button size="big" type="primary" onClick={onRestart}>
           Restart
         </Button>
