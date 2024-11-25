@@ -8,12 +8,15 @@ export default function SoloStats() {
   );
 
   const [elapsedTime, setElapsedTime] = useState(0);
-  const interval = useRef(-1);
+  const interval = useRef(0);
 
   useEffect(() => {
-    if (stopTime > 0) {
+    if (stopTime > 0 && interval.current !== 0) {
       clearInterval(interval.current);
-    } else {
+      interval.current = 0;
+    }
+
+    if (stopTime === 0 && interval.current === 0) {
       setElapsedTime(0);
       interval.current = setInterval(() => {
         const now = performance.now();
@@ -22,7 +25,12 @@ export default function SoloStats() {
       }, 1000);
     }
 
-    return () => clearInterval(interval.current);
+    return () => {
+      if (interval.current !== 0) {
+        clearInterval(interval.current);
+        interval.current = 0;
+      }
+    };
   }, [startTime, stopTime]);
 
   return (
