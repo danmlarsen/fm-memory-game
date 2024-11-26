@@ -1,8 +1,10 @@
-import { useAppSelector } from "../store/hooks";
+import { Player } from "../store/memoryGameSlice";
 
-export default function GameOverMultiplayer() {
-  const { players } = useAppSelector((state) => state.memoryGame);
+type AppProps = {
+  players: Player[];
+};
 
+export default function GameOverMultiplayer({ players }: AppProps) {
   const winnerAmount = Math.max(...players.map((p) => p.pairs));
   const winners = players.filter((player) => player.pairs === winnerAmount);
 

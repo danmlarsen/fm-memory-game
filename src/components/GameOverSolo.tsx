@@ -1,11 +1,16 @@
-import { useAppSelector } from "../store/hooks";
 import { formatTime } from "../utils/utils";
 
-export default function GameOverSolo() {
-  const { numMoves, startTime, stopTime } = useAppSelector(
-    (state) => state.memoryGame,
-  );
+type AppProps = {
+  numMoves: number;
+  startTime: number;
+  stopTime: number;
+};
 
+export default function GameOverSolo({
+  numMoves,
+  startTime,
+  stopTime,
+}: AppProps) {
   const elapsed = Math.floor((stopTime - startTime) / 1000);
 
   return (

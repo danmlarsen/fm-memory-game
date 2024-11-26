@@ -1,3 +1,5 @@
+import { AnimatePresence, motion } from "motion/react";
+
 type AppProps = {
   playerNum: number;
   moves: number;
@@ -21,14 +23,31 @@ export default function TurnBox({
         <div className={`${isActive ? "text-white" : "text-secondary-900"}`}>
           {moves}
         </div>
-        {isActive && (
-          <div className="absolute left-1/2 top-0 -z-10 size-5 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-primary-500"></div>
-        )}
+        <AnimatePresence>
+          {isActive && (
+            <motion.div
+              initial={{ rotateZ: 45, x: "-50%", y: "50%" }}
+              animate={{ rotateZ: 45, x: "-50%", y: "-50%" }}
+              exit={{ rotateZ: 45, x: "-50%", y: "50%" }}
+              transition={{ duration: 0.1, ease: "linear" }}
+              className="absolute left-1/2 top-0 -z-10 size-5 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-primary-500"
+            ></motion.div>
+          )}
+        </AnimatePresence>
       </div>
       <div className="hidden text-center lg:block">
-        {isActive && (
-          <span className="uppercase text-secondary-900">Current turn</span>
-        )}
+        <AnimatePresence>
+          {isActive && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="text-[13px] uppercase tracking-[5px] text-secondary-900"
+            >
+              Current turn
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

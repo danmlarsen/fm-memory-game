@@ -4,6 +4,7 @@ import { newGame, restartGame } from "../store/memoryGameSlice";
 import Button from "../ui/Button";
 import Logo from "../ui/Logo";
 import BoardHeaderGameMenu from "./BoardHeaderGameMenu";
+import { AnimatePresence } from "motion/react";
 
 export default function BoardHeader() {
   const dispatch = useAppDispatch();
@@ -17,13 +18,16 @@ export default function BoardHeader() {
 
   return (
     <>
-      {menuOpen && (
-        <BoardHeaderGameMenu
-          onNewGame={() => dispatch(newGame())}
-          onRestart={handleRestart}
-          onResume={() => setMenuOpen(false)}
-        />
-      )}
+      <AnimatePresence>
+        {menuOpen && (
+          <BoardHeaderGameMenu
+            onNewGame={() => dispatch(newGame())}
+            onRestart={handleRestart}
+            onResume={() => setMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
       <header className="flex items-center justify-between">
         <Logo />
         <div className="hidden gap-4 sm:flex">

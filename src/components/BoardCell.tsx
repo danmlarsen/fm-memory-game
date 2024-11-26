@@ -1,9 +1,23 @@
+import { motion } from "motion/react";
+
 type AppProps = {
   children: React.ReactNode;
   show?: boolean;
   lastMatch?: boolean;
   disabled?: boolean;
   onClick: () => void;
+};
+
+const cellVariants = {
+  hide: { opacity: 0, y: "-25px", scale: 1.05 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      ease: "easeInOut",
+    },
+  },
 };
 
 export default function BoardCell({
@@ -14,7 +28,8 @@ export default function BoardCell({
   disabled = false,
 }: AppProps) {
   return (
-    <button
+    <motion.button
+      variants={cellVariants}
       className={`relative rounded-full`}
       style={{
         paddingBottom: "100%",
@@ -23,7 +38,7 @@ export default function BoardCell({
       disabled={disabled || show}
     >
       <span
-        className={`absolute inset-0 rounded-full bg-secondary-900 shadow-xl transition duration-300 md:hover:bg-secondary-500`}
+        className={`absolute inset-0 rounded-full bg-secondary-900 shadow-xl transition duration-500 md:hover:bg-secondary-500`}
         style={{
           transform: `rotateY(${show ? "-180" : "0"}deg)`,
           backfaceVisibility: "hidden",
@@ -31,7 +46,7 @@ export default function BoardCell({
         }}
       ></span>
       <span
-        className={`absolute inset-0 rounded-full shadow-xl transition duration-300 ${lastMatch ? "bg-primary-500" : "bg-secondary-200"}`}
+        className={`absolute inset-0 rounded-full shadow-xl transition duration-500 ${lastMatch ? "bg-primary-500" : "bg-secondary-200"}`}
         style={{
           transform: `rotateY(${show ? "0" : "180"}deg)`,
           backfaceVisibility: "hidden",
@@ -39,7 +54,7 @@ export default function BoardCell({
         }}
       ></span>
       <span
-        className={`absolute left-1/2 top-1/2 transition duration-300`}
+        className={`absolute left-1/2 top-1/2 transition duration-500`}
         style={{
           transform: `translate(-50%, -50%) rotateY(${show ? "0" : "180"}deg)`,
           backfaceVisibility: "hidden",
@@ -48,6 +63,6 @@ export default function BoardCell({
       >
         {children}
       </span>
-    </button>
+    </motion.button>
   );
 }

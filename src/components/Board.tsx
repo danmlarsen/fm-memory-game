@@ -9,6 +9,14 @@ import {
 import GameIcon from "./GameIcon";
 import { AnimatePresence, motion } from "motion/react";
 
+const boardVariants = {
+  show: {
+    transition: {
+      staggerChildren: 0.025,
+    },
+  },
+};
+
 export default function Board() {
   const {
     gameState,
@@ -34,10 +42,10 @@ export default function Board() {
         boardState[prevIntermediateMoveIndex].number
       ) {
         dispatch(addMove({ matched: true }));
-        dispatch(nextTurnWithDelay({ delay: 1000, matched: true }));
+        dispatch(nextTurnWithDelay({ delay: 700, matched: true }));
       } else {
         dispatch(addMove({ matched: false }));
-        dispatch(nextTurnWithDelay({ delay: 1000, matched: false }));
+        dispatch(nextTurnWithDelay({ delay: 700, matched: false }));
       }
     }
   }
@@ -46,9 +54,10 @@ export default function Board() {
     <AnimatePresence mode="wait">
       <motion.div
         key={startTime}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+        initial="hide"
+        animate="show"
+        exit="hide"
+        variants={boardVariants}
         style={{
           gridTemplateRows: `repeat(${gridSize}, 1fr)`,
           gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
