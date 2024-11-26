@@ -12,8 +12,9 @@ export default function Button({
   size = "normal",
 }: AppProps) {
   let classes = "";
-  if (size === "normal") classes += "rounded-md ";
-  if (size === "big") classes += "rounded-xl w-full md:text-xl ";
+  if (size === "normal") classes += "rounded-md md:text-xl ";
+  if (size === "big")
+    classes += "rounded-xl w-full text-lg md:text-[32px] md:leading-10 ";
 
   if (type === "primary")
     classes += "text-gray-50 bg-primary-500 hover:bg-primary-200 ";

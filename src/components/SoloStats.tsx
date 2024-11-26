@@ -34,7 +34,7 @@ export default function SoloStats() {
   }, [startTime, stopTime]);
 
   return (
-    <div className="mx-auto grid w-full max-w-[540px] grid-cols-[repeat(2,minmax(min-content,255px))] justify-center gap-8">
+    <div className="mx-auto grid w-full max-w-[540px] grid-cols-[repeat(2,1fr)] justify-center gap-[30px]">
       <StatsBox name="Time" data={formatTime(elapsedTime)} />
       <StatsBox name="Moves" data={numMoves} />
     </div>
@@ -43,9 +43,11 @@ export default function SoloStats() {
 
 function StatsBox({ name, data }: { name: string; data: string | number }) {
   return (
-    <div className="bg-secondary-100 flex items-center justify-between rounded-sm px-5 py-6">
-      <div className="text-secondary-400">{name}</div>
-      <div className="text-secondary-700">{data}</div>
+    <div className="bg-secondary-100 flex flex-col items-center justify-between rounded-sm px-5 py-6 md:flex-row">
+      <div className="text-[15px] text-secondary-400 md:text-lg">{name}</div>
+      <div className="text-2xl tabular-nums text-secondary-700 md:text-[32px]">
+        {data}
+      </div>
     </div>
   );
 }

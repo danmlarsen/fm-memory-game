@@ -14,13 +14,17 @@ export default function TurnBox({
   return (
     <div className="space-y-4">
       <div
-        className={`relative flex flex-col items-center rounded-sm p-2 py-[10px] transition duration-300 md:items-start md:p-4 lg:min-h-[72px] lg:flex-row lg:items-center lg:justify-between ${isActive ? "bg-primary-500" : "bg-secondary-100"}`}
+        className={`relative flex flex-col items-center gap-[2px] rounded-sm p-2 py-[10px] transition duration-300 md:items-start md:gap-[5px] md:p-4 lg:min-h-[72px] lg:flex-row lg:items-center lg:justify-between ${isActive ? "bg-primary-500" : "bg-secondary-100"}`}
       >
-        <div className={`${isActive ? "text-white" : "text-secondary-400"}`}>
+        <div
+          className={`text-[15px] lg:text-lg ${isActive ? "text-white" : "text-secondary-400"}`}
+        >
           <span className="md:hidden">P{playerNum}</span>
           <span className="hidden md:inline">Player {playerNum}</span>
         </div>
-        <div className={`${isActive ? "text-white" : "text-secondary-900"}`}>
+        <div
+          className={`text-2xl lg:text-[32px] ${isActive ? "text-white" : "text-secondary-900"}`}
+        >
           {moves}
         </div>
         <AnimatePresence>

@@ -7,7 +7,7 @@ export default function BoardFooter() {
   const isSolo = useAppSelector(selectIsSolo);
 
   return (
-    <footer className="mx-auto grid max-w-[1110px] items-center">
+    <footer className="mx-auto grid w-full max-w-[1110px] items-center">
       {isSolo ? <SoloStats /> : <TurnBoxes />}
     </footer>
   );

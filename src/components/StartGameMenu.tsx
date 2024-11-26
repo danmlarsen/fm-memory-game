@@ -30,7 +30,7 @@ export default function StartGameMenu() {
     <div className="container max-w-[654px] space-y-8">
       <header className="grid place-items-center">
         <div>
-          <Logo className="h-10 w-[122px] fill-gray-50" />
+          <Logo className="h-10 w-[122px] fill-gray-50 md:h-[50px] md:w-[153px]" />
         </div>
       </header>
       <main className="space-y-8 rounded-[20px] bg-gray-50 p-6 text-secondary-500 md:p-14">
