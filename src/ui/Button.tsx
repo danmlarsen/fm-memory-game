@@ -2,7 +2,7 @@ type AppProps = {
   children: string;
   onClick: () => void;
   type?: "primary" | "secondary";
-  size?: "normal" | "big";
+  size?: "normal" | "big" | "huge";
 };
 
 export default function Button({
@@ -14,6 +14,8 @@ export default function Button({
   let classes = "";
   if (size === "normal") classes += "rounded-md md:text-xl ";
   if (size === "big")
+    classes += "rounded-xl w-full text-lg md:text-[20px] md:leading-[25px] ";
+  if (size === "huge")
     classes += "rounded-xl w-full text-lg md:text-[32px] md:leading-10 ";
 
   if (type === "primary")

@@ -8,7 +8,7 @@ export default function TurnBoxes() {
 
   return (
     <div
-      className="grid justify-center gap-4"
+      className="grid justify-center gap-6 md:gap-3 lg:gap-[30px]"
       style={{
         gridTemplateColumns: `repeat(${players.length},minmax(min-content,255px)`,
       }}

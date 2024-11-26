@@ -27,11 +27,9 @@ export default function StartGameMenu() {
   }
 
   return (
-    <div className="container max-w-[654px] space-y-8">
+    <div className="container max-w-[654px] space-y-8 lg:space-y-[78px]">
       <header className="grid place-items-center">
-        <div>
-          <Logo className="h-10 w-[122px] fill-gray-50 md:h-[50px] md:w-[153px]" />
-        </div>
+        <Logo className="h-10 w-[122px] fill-gray-50 md:h-[50px] md:w-[153px]" />
       </header>
       <main className="space-y-8 rounded-[20px] bg-gray-50 p-6 text-secondary-500 md:p-14">
         <MenuItem name="Select Theme">
@@ -49,7 +47,7 @@ export default function StartGameMenu() {
           </MenuButton>
         </MenuItem>
 
-        <MenuItem name="Number of Players">
+        <MenuItem name="Numbers of Players" gap="gap-2 md:gap-[22px]">
           <MenuButton
             isActive={numPlayers === 1}
             onClick={() => setNumPlayers(1)}
@@ -86,7 +84,7 @@ export default function StartGameMenu() {
         </MenuItem>
 
         <div>
-          <Button size="big" onClick={handleStartGame}>
+          <Button size="huge" onClick={handleStartGame}>
             Start Game
           </Button>
         </div>
@@ -98,14 +96,18 @@ export default function StartGameMenu() {
 function MenuItem({
   name,
   children,
+  gap = "gap-3 md:gap-[30px]",
 }: {
   name: string;
   children: React.ReactNode;
+  gap?: string;
 }) {
   return (
     <div className="space-y-3">
-      <h3>{name}</h3>
-      <div className="grid grid-flow-col gap-3 text-white">{children}</div>
+      <label className="text-[15px] leading-[19px] md:text-xl">{name}</label>
+      <div className={`grid auto-cols-fr grid-flow-col text-white ${gap}`}>
+        {children}
+      </div>
     </div>
   );
 }
