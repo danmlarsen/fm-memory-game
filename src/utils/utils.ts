@@ -1,10 +1,13 @@
 export function generateBoard(size = 6) {
-  const uniqueNumbers = Array.from({ length: size ** 2 / 2 }, (_, i) => ({
+  // const uniqueNumbers = Array.from({ length: size ** 2 / 2 }, (_, i) => ({
+  const uniqueNumbers = Array.from({ length: 18 }, (_, i) => ({
     number: i,
     show: false,
   }));
   const shuffledNumbers = shuffleArray(uniqueNumbers);
-  const doubleNumbers = shuffledNumbers.concat(shuffledNumbers);
+  const selectedShuffledNumbers = shuffledNumbers.slice(0, size ** 2 / 2);
+
+  const doubleNumbers = selectedShuffledNumbers.concat(selectedShuffledNumbers);
 
   return shuffleArray(doubleNumbers);
 }
