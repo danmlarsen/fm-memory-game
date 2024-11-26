@@ -25,7 +25,7 @@ export default function Button({
 
   return (
     <button
-      className={`px-7 py-3 transition duration-300 ${classes}`}
+      className={`px-7 py-3 transition duration-300 focus:outline-none focus-visible:ring focus-visible:ring-secondary-900 focus-visible:ring-offset-2 ${classes}`}
       onClick={onClick}
     >
       {children}

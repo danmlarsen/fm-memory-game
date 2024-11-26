@@ -30,15 +30,16 @@ export default function BoardCell({
   return (
     <motion.button
       variants={cellVariants}
-      className={`relative rounded-full`}
+      className={`group relative rounded-full`}
       style={{
         paddingBottom: "100%",
       }}
       onClick={onClick}
       disabled={disabled || show}
+      aria-label={show ? "" : "Hidden cell"}
     >
       <span
-        className={`absolute inset-0 rounded-full bg-secondary-900 shadow-xl transition duration-500 md:hover:bg-secondary-500`}
+        className={`absolute inset-0 rounded-full bg-secondary-900 shadow-xl transition duration-500 group-focus:outline-none group-focus-visible:ring group-focus-visible:ring-secondary-900 group-focus-visible:ring-offset-2 md:hover:bg-secondary-500`}
         style={{
           transform: `rotateY(${show ? "-180" : "0"}deg)`,
           backfaceVisibility: "hidden",
@@ -53,8 +54,9 @@ export default function BoardCell({
           perspective: "150rem",
         }}
       ></span>
+
       <span
-        className={`absolute left-1/2 top-1/2 transition duration-500`}
+        className={`absolute left-1/2 top-1/2 transition duration-500 ${show ? "visible" : "invisible"}`}
         style={{
           transform: `translate(-50%, -50%) rotateY(${show ? "0" : "180"}deg)`,
           backfaceVisibility: "hidden",
