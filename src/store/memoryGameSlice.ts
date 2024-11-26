@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "./store";
+import { generateBoard } from "../utils/utils";
 
 export enum GameState {
   NewGame,
@@ -42,7 +43,7 @@ const memoryGameSlice = createSlice({
     startGame(_, action) {
       return {
         ...initialState,
-        boardState: action.payload.boardState,
+        boardState: generateBoard(action.payload.gridSize),
         gridSize: action.payload.gridSize,
         icons: action.payload.icons,
         players: action.payload.players,
@@ -50,11 +51,12 @@ const memoryGameSlice = createSlice({
         gameState: GameState.Playing,
       };
     },
-    restartGame(state, action) {
+    restartGame(state) {
       return {
         ...initialState,
-        boardState: action.payload.boardState,
+        boardState: generateBoard(state.gridSize),
         gridSize: state.gridSize,
+        icons: state.icons,
         players: generatePlayers(state.players.length),
         startTime: performance.now(),
         gameState: GameState.Playing,

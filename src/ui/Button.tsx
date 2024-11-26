@@ -13,7 +13,7 @@ export default function Button({
 }: AppProps) {
   let classes = "";
   if (size === "normal") classes += "rounded-md ";
-  if (size === "big") classes += "rounded-xl w-full ";
+  if (size === "big") classes += "rounded-xl w-full md:text-xl ";
 
   if (type === "primary")
     classes += "text-gray-50 bg-primary-500 hover:bg-primary-200 ";
@@ -22,7 +22,7 @@ export default function Button({
 
   return (
     <button
-      className={`px-7 py-3 transition duration-300 md:text-3xl ${classes}`}
+      className={`px-7 py-3 transition duration-300 ${classes}`}
       onClick={onClick}
     >
       {children}

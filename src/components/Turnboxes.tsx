@@ -15,7 +15,7 @@ export default function TurnBoxes() {
     >
       {players.map((player, index) => (
         <TurnBox
-          key={index}
+          key={player.playerNum}
           playerNum={player.playerNum}
           moves={player.pairs}
           isActive={currentPlayer === index}

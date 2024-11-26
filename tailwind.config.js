@@ -26,6 +26,10 @@ export default {
       fontFamily: {
         sans: ["Atkinson Hyperlegible", ...defaultTheme.fontFamily.sans],
       },
+      screens: {
+        sm: "500px",
+        md: "654px",
+      },
     },
     borderRadius: {
       ...defaultTheme.borderRadius,

@@ -1,26 +1,18 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { useAppDispatch } from "../store/hooks";
 import { newGame, restartGame } from "../store/memoryGameSlice";
 import Button from "../ui/Button";
 import Logo from "../ui/Logo";
-import { generateBoard } from "../utils/utils";
 import BoardHeaderGameMenu from "./BoardHeaderGameMenu";
 
 export default function BoardHeader() {
-  const { gridSize } = useAppSelector((state) => state.memoryGame);
   const dispatch = useAppDispatch();
 
   const [menuOpen, setMenuOpen] = useState(false);
 
   function handleRestart() {
     if (menuOpen) setMenuOpen(false);
-
-    const newBoard = generateBoard(gridSize);
-    dispatch(
-      restartGame({
-        boardState: newBoard,
-      }),
-    );
+    dispatch(restartGame());
   }
 
   return (

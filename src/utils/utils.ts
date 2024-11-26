@@ -3,7 +3,8 @@ export function generateBoard(size = 6) {
     number: i,
     show: false,
   }));
-  const doubleNumbers = uniqueNumbers.concat(uniqueNumbers);
+  const shuffledNumbers = shuffleArray(uniqueNumbers);
+  const doubleNumbers = shuffledNumbers.concat(shuffledNumbers);
 
   return shuffleArray(doubleNumbers);
 }
