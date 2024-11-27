@@ -39,7 +39,7 @@ export default function BoardCell({
       aria-label={show ? "" : "Hidden cell"}
     >
       <span
-        className={`absolute inset-0 rounded-full bg-secondary-900 shadow-xl transition duration-500 group-focus:outline-none group-focus-visible:ring group-focus-visible:ring-secondary-900 group-focus-visible:ring-offset-2 md:hover:bg-secondary-500`}
+        className={`absolute inset-0 rounded-full bg-secondary-700 shadow-xl transition duration-500 group-focus:outline-none group-focus-visible:ring group-focus-visible:ring-secondary-900 group-focus-visible:ring-offset-2 md:hover:bg-secondary-500`}
         style={{
           transform: `rotateY(${show ? "-180" : "0"}deg)`,
           backfaceVisibility: "hidden",

@@ -33,7 +33,7 @@ function App() {
         >
           <GameOverModal />
           <BoardHeader />
-          <main className="grid place-items-center py-4 md:py-10">
+          <main className="grid place-items-center py-4 md:py-10 lg:py-[6.5625rem]">
             <Board />
           </main>
           <BoardFooter />
