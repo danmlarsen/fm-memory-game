@@ -1,5 +1,5 @@
 export default function Logo({
-  className = "fill-secondary-900 h-[30px] w-[92px] md:h-[50px] md:w-[153px]",
+  className = "fill-secondary-900 h-[1.875rem] w-[5.75rem] md:h-[3.125rem] md:w-[9.5625rem]",
 }) {
   return (
     <h1>

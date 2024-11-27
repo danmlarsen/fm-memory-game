@@ -6,9 +6,5 @@ import TurnBoxes from "./Turnboxes";
 export default function BoardFooter() {
   const isSolo = useAppSelector(selectIsSolo);
 
-  return (
-    <footer className="mx-auto grid w-full max-w-[1110px] items-center">
-      {isSolo ? <SoloStats /> : <TurnBoxes />}
-    </footer>
-  );
+  return <footer>{isSolo ? <SoloStats /> : <TurnBoxes />}</footer>;
 }

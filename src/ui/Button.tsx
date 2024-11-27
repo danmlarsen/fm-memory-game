@@ -14,9 +14,10 @@ export default function Button({
   let classes = "";
   if (size === "normal") classes += "rounded-md md:text-xl ";
   if (size === "big")
-    classes += "rounded-xl w-full text-lg md:text-[20px] md:leading-[25px] ";
+    classes +=
+      "rounded-xl w-full text-lg md:text-[1.25rem] md:leading-[1.5625rem] ";
   if (size === "huge")
-    classes += "rounded-xl w-full text-lg md:text-[32px] md:leading-10 ";
+    classes += "rounded-xl w-full text-lg md:text-[2rem] md:leading-10 ";
 
   if (type === "primary")
     classes += "text-gray-50 bg-primary-500 hover:bg-primary-200 ";

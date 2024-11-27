@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 
 type AppProps = {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ type AppProps = {
 };
 
 const cellVariants = {
-  hide: { opacity: 0, y: "-25px", scale: 1.05 },
+  hide: { opacity: 0, y: "-1.5625rem", scale: 1.05 },
   show: {
     opacity: 1,
     y: 0,
@@ -55,16 +55,23 @@ export default function BoardCell({
         }}
       ></span>
 
-      <span
-        className={`absolute left-1/2 top-1/2 transition duration-500 ${show ? "visible" : "invisible"}`}
-        style={{
-          transform: `translate(-50%, -50%) rotateY(${show ? "0" : "180"}deg)`,
-          backfaceVisibility: "hidden",
-          perspective: "150rem",
-        }}
-      >
-        {children}
-      </span>
+      <AnimatePresence>
+        {show && (
+          <motion.span
+            initial={{ x: "-50%", y: "-50%", rotateY: "180deg" }}
+            animate={{ x: "-50%", y: "-50%", rotateY: "0deg" }}
+            exit={{ x: "-50%", y: "-50%", rotateY: "180deg" }}
+            transition={{ duration: 0.5 }}
+            className={`absolute left-1/2 top-1/2`}
+            style={{
+              backfaceVisibility: "hidden",
+              perspective: "150rem",
+            }}
+          >
+            {children}
+          </motion.span>
+        )}
+      </AnimatePresence>
     </motion.button>
   );
 }

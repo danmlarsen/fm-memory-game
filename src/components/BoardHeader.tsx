@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useAppDispatch } from "../store/hooks";
 import { newGame, restartGame } from "../store/memoryGameSlice";
+import { AnimatePresence } from "motion/react";
+
 import Button from "../ui/Button";
 import Logo from "../ui/Logo";
 import BoardHeaderGameMenu from "./BoardHeaderGameMenu";
-import { AnimatePresence } from "motion/react";
 
 export default function BoardHeader() {
   const dispatch = useAppDispatch();

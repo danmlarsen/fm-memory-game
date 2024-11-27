@@ -1,10 +1,12 @@
 import { useState } from "react";
-import Button from "../ui/Button";
-import Logo from "../ui/Logo";
-import MenuButton from "../ui/MenuButton";
 import { useAppDispatch } from "../store/hooks";
 import { generatePlayers, startGame } from "../store/memoryGameSlice";
 import { generateBoard } from "../utils/utils";
+
+import Logo from "../ui/Logo";
+import Button from "../ui/Button";
+import MenuItem from "../ui/MenuItem";
+import MenuButton from "../ui/MenuButton";
 
 export default function StartGameMenu() {
   const dispatch = useAppDispatch();
@@ -20,18 +22,18 @@ export default function StartGameMenu() {
       startGame({
         boardState: newBoard,
         gridSize,
-        icons: selectedTheme === "icons" ? true : false,
+        icons: selectedTheme === "icons",
         players: generatePlayers(numPlayers),
       }),
     );
   }
 
   return (
-    <div className="container max-w-[654px] space-y-8 lg:space-y-[78px]">
+    <div className="container max-w-[40.875rem] space-y-8 md:space-y-[4.875rem]">
       <header className="grid place-items-center">
-        <Logo className="h-10 w-[122px] fill-gray-50 md:h-[50px] md:w-[153px]" />
+        <Logo className="h-10 w-[7.625rem] fill-gray-50 md:h-[3.125rem] md:w-[9.5625rem]" />
       </header>
-      <main className="space-y-8 rounded-[20px] bg-gray-50 p-6 text-secondary-500 md:p-14">
+      <main className="space-y-8 rounded-sm bg-gray-50 p-6 text-secondary-500 md:rounded-[1.25rem] md:p-14">
         <MenuItem name="Select Theme">
           <MenuButton
             isActive={selectedTheme === "numbers"}
@@ -47,7 +49,7 @@ export default function StartGameMenu() {
           </MenuButton>
         </MenuItem>
 
-        <MenuItem name="Numbers of Players" gap="gap-2 md:gap-[22px]">
+        <MenuItem name="Numbers of Players" gap="gap-2 md:gap-[1.375rem]">
           <MenuButton
             isActive={numPlayers === 1}
             onClick={() => setNumPlayers(1)}
@@ -89,25 +91,6 @@ export default function StartGameMenu() {
           </Button>
         </div>
       </main>
-    </div>
-  );
-}
-
-function MenuItem({
-  name,
-  children,
-  gap = "gap-3 md:gap-[30px]",
-}: {
-  name: string;
-  children: React.ReactNode;
-  gap?: string;
-}) {
-  return (
-    <div className="space-y-3">
-      <label className="text-[15px] leading-[19px] md:text-xl">{name}</label>
-      <div className={`grid auto-cols-fr grid-flow-col text-white ${gap}`}>
-        {children}
-      </div>
     </div>
   );
 }

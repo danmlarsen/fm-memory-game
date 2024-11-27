@@ -20,15 +20,15 @@ export default function GameOverSolo({
         <p className="md:text-lg">Game over! Here's how you got on...</p>
       </div>
       <ul className="space-y-2">
-        <li className="bg-secondary-100 flex items-center justify-between rounded-sm p-4">
-          <span className="text-[13px] md:text-lg">Time Elapsed</span>
-          <span className="text-xl text-secondary-900 md:text-[32px] md:leading-10">
+        <li className="flex items-center justify-between rounded-sm bg-secondary-100 p-4">
+          <span className="text-[0.8125rem] md:text-lg">Time Elapsed</span>
+          <span className="text-xl text-secondary-900 md:text-[2rem] md:leading-10">
             {formatTime(elapsed)}
           </span>
         </li>
-        <li className="bg-secondary-100 flex items-center justify-between rounded-sm p-4">
-          <span className="text-[13px] md:text-lg">Moves Taken</span>
-          <span className="text-xl text-secondary-900 md:text-[32px] md:leading-10">
+        <li className="flex items-center justify-between rounded-sm bg-secondary-100 p-4">
+          <span className="text-[0.8125rem] md:text-lg">Moves Taken</span>
+          <span className="text-xl text-secondary-900 md:text-[2rem] md:leading-10">
             {numMoves} Moves
           </span>
         </li>

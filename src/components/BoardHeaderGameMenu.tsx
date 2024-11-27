@@ -18,7 +18,7 @@ export default function BoardHeaderGameMenu({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 grid place-items-center bg-black/50 p-6"
+      className="fixed inset-0 z-50 grid place-items-center bg-black/50 p-6 md:hidden"
     >
       <div className="w-full max-w-sm space-y-4 rounded-sm bg-gray-50 p-6 text-sm text-secondary-400">
         <Button size="big" type="primary" onClick={onRestart}>

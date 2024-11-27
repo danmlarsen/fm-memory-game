@@ -27,18 +27,6 @@ export function shuffleArray(arr: { number: number; show: boolean }[]) {
   return shuffledArr;
 }
 
-export function getGreatestNumIndexes(arr: number[]) {
-  const largest = Math.max(...arr);
-
-  const indexes = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === largest) {
-      indexes.push(i);
-    }
-  }
-  return indexes;
-}
-
 export function formatTime(seconds: number) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;

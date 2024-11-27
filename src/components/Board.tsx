@@ -1,4 +1,4 @@
-import BoardCell from "./BoardCell";
+import { AnimatePresence, motion } from "motion/react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
   addIntermediateMove,
@@ -6,8 +6,9 @@ import {
   GameState,
   nextTurnWithDelay,
 } from "../store/memoryGameSlice";
+
 import GameIcon from "./GameIcon";
-import { AnimatePresence, motion } from "motion/react";
+import BoardCell from "./BoardCell";
 
 const boardVariants = {
   show: {
@@ -62,7 +63,7 @@ export default function Board() {
           gridTemplateRows: `repeat(${gridSize}, 1fr)`,
           gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
         }}
-        className={`mx-auto grid w-full leading-normal ${gridSize < 6 ? "max-w-[532px] gap-3 text-[40px] md:gap-5 md:text-[56px]" : "max-w-[572px] gap-2 text-[24px] md:gap-4 md:text-[44px]"}`}
+        className={`mx-auto grid w-full leading-normal ${gridSize < 6 ? "max-w-[33.25rem] gap-3 text-[2.5rem] md:gap-5 md:text-[3.5rem]" : "max-w-[35.75rem] gap-2 text-[1.5rem] md:gap-4 md:text-[2.75rem]"}`}
       >
         {boardState.map((boardCell, index) => (
           <BoardCell

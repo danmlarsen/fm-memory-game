@@ -14,16 +14,16 @@ export default function TurnBox({
   return (
     <div className="space-y-4">
       <div
-        className={`relative flex flex-col items-center gap-[2px] rounded-sm p-2 py-[10px] transition duration-300 md:items-start md:gap-[5px] md:p-4 lg:min-h-[72px] lg:flex-row lg:items-center lg:justify-between ${isActive ? "bg-primary-500" : "bg-secondary-100"}`}
+        className={`relative flex flex-col items-center gap-[0.125rem] rounded-sm p-2 py-[0.625rem] transition duration-300 md:items-start md:gap-[0.3125rem] md:p-4 lg:min-h-[4.5rem] lg:flex-row lg:items-center lg:justify-between ${isActive ? "bg-primary-500" : "bg-secondary-100"}`}
       >
         <div
-          className={`text-[15px] lg:text-lg ${isActive ? "text-white" : "text-secondary-400"}`}
+          className={`text-[0.9375rem] lg:text-lg ${isActive ? "text-white" : "text-secondary-400"}`}
         >
           <span className="md:hidden">P{playerNum}</span>
           <span className="hidden md:inline">Player {playerNum}</span>
         </div>
         <div
-          className={`text-2xl lg:text-[32px] ${isActive ? "text-white" : "text-secondary-900"}`}
+          className={`text-2xl lg:text-[2rem] ${isActive ? "text-white" : "text-secondary-900"}`}
         >
           {moves}
         </div>
@@ -46,7 +46,7 @@ export default function TurnBox({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="text-[13px] uppercase tracking-[5px] text-secondary-900"
+              className="text-[0.8125rem] uppercase tracking-[5px] text-secondary-900"
             >
               Current turn
             </motion.div>
