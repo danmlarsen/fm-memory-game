@@ -39,7 +39,7 @@ export default function BoardCell({
       aria-label={show ? "" : "Hidden cell"}
     >
       <span
-        className={`absolute inset-0 rounded-full bg-secondary-700 shadow-xl transition duration-500 group-focus:outline-none group-focus-visible:ring group-focus-visible:ring-secondary-900 group-focus-visible:ring-offset-2 md:hover:bg-secondary-500`}
+        className={`absolute inset-0 rounded-full bg-secondary-700 shadow-xl transition duration-700 group-focus:outline-none group-focus-visible:ring group-focus-visible:ring-secondary-900 group-focus-visible:ring-offset-2 md:hover:bg-secondary-500`}
         style={{
           transform: `rotateY(${show ? "-180" : "0"}deg)`,
           backfaceVisibility: "hidden",
@@ -47,7 +47,7 @@ export default function BoardCell({
         }}
       ></span>
       <span
-        className={`absolute inset-0 rounded-full shadow-xl transition duration-500 ${lastMatch ? "bg-primary-500" : "bg-secondary-200"}`}
+        className={`absolute inset-0 rounded-full shadow-xl transition duration-700 ${lastMatch ? "bg-primary-500" : "bg-secondary-200"}`}
         style={{
           transform: `rotateY(${show ? "0" : "180"}deg)`,
           backfaceVisibility: "hidden",
@@ -61,7 +61,7 @@ export default function BoardCell({
             initial={{ x: "-50%", y: "-50%", rotateY: "180deg" }}
             animate={{ x: "-50%", y: "-50%", rotateY: "0deg" }}
             exit={{ x: "-50%", y: "-50%", rotateY: "180deg" }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.7 }}
             className={`absolute left-1/2 top-1/2`}
             style={{
               backfaceVisibility: "hidden",
