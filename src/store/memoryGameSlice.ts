@@ -20,13 +20,18 @@ export type Player = {
 };
 
 const initialState = {
-  gameState: GameState.NewGame,
+  gameState: GameState.Playing,
   gridSize: 4,
   icons: false,
-  boardState: [] as CellState[],
+  boardState: generateBoard(4) as CellState[],
   currentPlayer: 0,
-  players: [] as Player[],
-  startTime: 0,
+  players: [
+    {
+      playerNum: 1,
+      pairs: 0,
+    },
+  ] as Player[],
+  startTime: performance.now(),
   stopTime: 0,
   numMoves: 0,
   lastMatch: [] as number[],
