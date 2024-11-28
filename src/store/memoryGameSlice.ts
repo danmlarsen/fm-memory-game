@@ -65,6 +65,7 @@ const memoryGameSlice = createSlice({
     addIntermediateMove(state, action) {
       const moveIndex = action.payload;
       state.intermediateMoves.push(moveIndex);
+      state.lastMatch = [];
     },
     addMove(state, action) {
       state.gameState = GameState.MoveEnd;
@@ -94,7 +95,6 @@ const memoryGameSlice = createSlice({
       }
 
       state.intermediateMoves = [];
-      state.lastMatch = [];
 
       if (state.boardState.filter((cell) => cell.show === false).length === 0) {
         state.stopTime = performance.now();
